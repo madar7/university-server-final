@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>East Africa | University Management System</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -220,10 +220,10 @@
 
         @keyframes pulse-glow {
             0%, 100% {
-                box-shadow: 0 0 0 0 rgba(13, 126, 2, 0.4);
+                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4);
             }
             50% {
-                box-shadow: 0 0 0 10px rgba(4, 109, 43, 0);
+                box-shadow: 0 0 0 10px rgba(79, 70, 229, 0);
             }
         }
 
@@ -235,7 +235,7 @@
         .spinner-premium {
             width: 48px;
             height: 48px;
-            border: 3px solid rgba(93, 132, 16, 0.2);
+            border: 3px solid rgba(79, 70, 229, 0.2);
             border-radius: 50%;
             border-top-color: var(--primary);
             animation: spin 0.8s linear infinite;
@@ -243,6 +243,16 @@
 
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+        
+        /* Logo Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .logo-float {
+            animation: float 3s ease-in-out infinite;
         }
     </style>
 </head>
@@ -254,7 +264,7 @@
             <aside class="sidebar bg-white/95 backdrop-blur-sm shadow-xl w-72 flex-shrink-0 overflow-y-auto border-r border-gray-200">
                 <div class="p-8 border-b border-gray-200">
                     <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg logo-float">
                             <i class="fas fa-graduation-cap text-white text-xl"></i>
                         </div>
                         <div>
@@ -296,7 +306,7 @@
             <!-- Main Content -->
             <div class="flex-1 flex flex-col overflow-hidden">
                 <!-- Header -->
-                <header class="bg-white/80 backdrop-blur-sm shadow-sm border-b border-gray-200">
+                <header class="bg-white/80 backdrop-blur-sm shadow-sm border-b border-gray-200 sticky top-0 z-40">
                     <div class="flex items-center justify-between px-8 py-5">
                         <button id="menuToggle" class="lg:hidden text-gray-600 hover:text-primary transition-colors">
                             <i class="fas fa-bars text-2xl"></i>
@@ -340,7 +350,7 @@
         <div class="relative z-10 w-full max-w-md mx-4 animate-fadeInUp">
             <div class="glass-card rounded-2xl shadow-2xl p-8 backdrop-blur-xl">
                 <div class="text-center mb-8">
-                    <div class="w-20 h-20 mx-auto rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4 shadow-lg pulse-glow">
+                    <div class="w-20 h-20 mx-auto rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4 shadow-lg pulse-glow logo-float">
                         <i class="fas fa-graduation-cap text-white text-4xl"></i>
                     </div>
                     <h2 class="text-3xl font-bold text-white mb-2">East Africa</h2>
@@ -423,7 +433,7 @@
 
                 <div class="text-center mt-6">
                     <p class="text-white/60 text-xs">
-                        <i class="fas fa-shield-alt mr-1"></i> University System
+                        <i class="fas fa-shield-alt mr-1"></i> Secure University Management System
                     </p>
                 </div>
             </div>
@@ -464,9 +474,9 @@
 
     <script>
         // ============================================
-        // FIXED: API Configuration with Mock Data Fallback
+        // EAST AFRICA UNIVERSITY MANAGEMENT SYSTEM
+        // Premium Enterprise Dashboard
         // ============================================
-        const API_URL = window.location.origin;
         
         // Mock Data Storage (LocalStorage for persistence)
         let mockStudents = [];
@@ -474,89 +484,39 @@
         
         // Initialize mock data from localStorage or create default
         function initMockData() {
-            const storedStudents = localStorage.getItem('mock_students');
-            const storedPayments = localStorage.getItem('mock_payments');
+            const storedStudents = localStorage.getItem('east_africa_students');
+            const storedPayments = localStorage.getItem('east_africa_payments');
             
             if (storedStudents) {
                 mockStudents = JSON.parse(storedStudents);
             } else {
                 mockStudents = [
-                    { studentId: "STU2024001", firstName: "Ibrahim", lastName: "hassan", email: "ibra26@gmail.com", course: "Computer Science", yearOfStudy: 3, feesCollected: 12500, createdAt: new Date().toISOString() },
-                    { studentId: "STU2024002", firstName: "Abdihakin", lastName: "Jama", email: "jama26@gmail.com", course: "Business Administration", yearOfStudy: 2, feesCollected: 8750, createdAt: new Date().toISOString() },
-                    { studentId: "STU2024003", firstName: "Mohamed", lastName: "abdul", email: "moha26@gmail.com", course: "Engineering", yearOfStudy: 4, feesCollected: 15200, createdAt: new Date().toISOString() }
+                    { studentId: "STU2024001", firstName: "Ibrahim", lastName: "Hassan", email: "ibrahim.hassan@eastafrica.edu", course: "Computer Science", yearOfStudy: 3, feesCollected: 12500, totalFees: 25000, createdAt: new Date().toISOString() },
+                    { studentId: "STU2024002", firstName: "Abdihakin", lastName: "Jama", email: "abdihakin.jama@eastafrica.edu", course: "Business Administration", yearOfStudy: 2, feesCollected: 8750, totalFees: 18000, createdAt: new Date().toISOString() },
+                    { studentId: "STU2024003", firstName: "Mohamed", lastName: "Abdul", email: "mohamed.abdul@eastafrica.edu", course: "Engineering", yearOfStudy: 4, feesCollected: 15200, totalFees: 30000, createdAt: new Date().toISOString() },
+                    { studentId: "STU2024004", firstName: "Amina", lastName: "Omar", email: "amina.omar@eastafrica.edu", course: "Medicine", yearOfStudy: 5, feesCollected: 22500, totalFees: 45000, createdAt: new Date().toISOString() },
+                    { studentId: "STU2024005", firstName: "Omar", lastName: "Farah", email: "omar.farah@eastafrica.edu", course: "Law", yearOfStudy: 1, feesCollected: 5000, totalFees: 15000, createdAt: new Date().toISOString() }
                 ];
-                localStorage.setItem('mock_students', JSON.stringify(mockStudents));
+                localStorage.setItem('east_africa_students', JSON.stringify(mockStudents));
             }
             
             if (storedPayments) {
                 mockPayments = JSON.parse(storedPayments);
             } else {
                 mockPayments = [
-                    { paymentId: "PAY2024001", studentId: "STU2024001", studentName: "ibrahim hassan", amount: 500, paymentMethod: "Bank Transfer", dateOfPayment: new Date().toISOString() },
-                    { paymentId: "PAY2024002", studentId: "STU2024002", studentName: "abdihakin jama", amount: 750, paymentMethod: "Mobile Money", dateOfPayment: new Date().toISOString() },
-                    { paymentId: "PAY2024003", studentId: "STU2024001", studentName: "ibrahim hassan", amount: 300, paymentMethod: "Credit Card", dateOfPayment: new Date().toISOString() }
+                    { paymentId: "PAY2024001", studentId: "STU2024001", studentName: "Ibrahim Hassan", amount: 5000, paymentMethod: "Bank Transfer", dateOfPayment: new Date().toISOString() },
+                    { paymentId: "PAY2024002", studentId: "STU2024002", studentName: "Abdihakin Jama", amount: 8750, paymentMethod: "Mobile Money", dateOfPayment: new Date().toISOString() },
+                    { paymentId: "PAY2024003", studentId: "STU2024001", studentName: "Ibrahim Hassan", amount: 7500, paymentMethod: "Credit Card", dateOfPayment: new Date().toISOString() },
+                    { paymentId: "PAY2024004", studentId: "STU2024003", studentName: "Mohamed Abdul", amount: 15200, paymentMethod: "Cash", dateOfPayment: new Date().toISOString() },
+                    { paymentId: "PAY2024005", studentId: "STU2024004", studentName: "Amina Omar", amount: 22500, paymentMethod: "Bank Transfer", dateOfPayment: new Date().toISOString() },
+                    { paymentId: "PAY2024006", studentId: "STU2024005", studentName: "Omar Farah", amount: 5000, paymentMethod: "Mobile Money", dateOfPayment: new Date().toISOString() }
                 ];
-                localStorage.setItem('mock_payments', JSON.stringify(mockPayments));
+                localStorage.setItem('east_africa_payments', JSON.stringify(mockPayments));
             }
         }
         
-        // Helper function to make API calls with fallback to mock data
-        async function apiCall(endpoint, options = {}) {
-            try {
-                const response = await fetch(`${API_URL}${endpoint}`, {
-                    ...options,
-                    headers: { 'Content-Type': 'application/json', ...options.headers }
-                });
-                
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                const data = await response.json();
-                return { success: true, data: data.data || data };
-            } catch (error) {
-                console.warn(`API call to ${endpoint} failed:`, error);
-                // Return mock data based on endpoint
-                return handleMockData(endpoint, options);
-            }
-        }
-        
-        function handleMockData(endpoint, options) {
-            // GET requests
-            if (options.method === 'DELETE') {
-                const id = endpoint.split('/').pop();
-                if (endpoint.includes('/api/students/')) {
-                    mockStudents = mockStudents.filter(s => s.studentId !== id);
-                    localStorage.setItem('mock_students', JSON.stringify(mockStudents));
-                    return { success: true, message: 'Student deleted' };
-                } else if (endpoint.includes('/api/payments/')) {
-                    mockPayments = mockPayments.filter(p => p.paymentId !== id);
-                    localStorage.setItem('mock_payments', JSON.stringify(mockPayments));
-                    return { success: true, message: 'Payment deleted' };
-                }
-            }
-            
-            if (options.method === 'POST') {
-                const body = JSON.parse(options.body);
-                if (endpoint === '/api/students') {
-                    const newStudent = { ...body, feesCollected: 0, createdAt: new Date().toISOString() };
-                    mockStudents.push(newStudent);
-                    localStorage.setItem('mock_students', JSON.stringify(mockStudents));
-                    return { success: true, data: newStudent };
-                } else if (endpoint === '/api/payments') {
-                    const student = mockStudents.find(s => s.studentId === body.studentId);
-                    if (!student) return { success: false, message: 'Student not found' };
-                    
-                    const newPayment = {
-                        ...body,
-                        studentName: `${student.firstName} ${student.lastName}`,
-                        dateOfPayment: new Date().toISOString()
-                    };
-                    mockPayments.push(newPayment);
-                    student.feesCollected += body.amount;
-                    localStorage.setItem('mock_students', JSON.stringify(mockStudents));
-                    localStorage.setItem('mock_payments', JSON.stringify(mockPayments));
-                    return { success: true, data: newPayment };
-                }
-            }
-            
+        // Helper function for data operations
+        function getData(endpoint) {
             if (endpoint === '/api/stats') {
                 const totalStudents = mockStudents.length;
                 const totalPayments = mockPayments.length;
@@ -564,29 +524,79 @@
                 const averagePayment = totalPayments > 0 ? totalRevenue / totalPayments : 0;
                 return { success: true, data: { totalStudents, totalPayments, totalRevenue, averagePayment } };
             }
-            
             if (endpoint === '/api/students') {
                 return { success: true, data: mockStudents };
             }
-            
             if (endpoint === '/api/payments') {
                 return { success: true, data: mockPayments };
             }
-            
-            if (endpoint.startsWith('/api/students/') && !endpoint.includes('/payments')) {
-                const id = endpoint.split('/').pop();
-                const student = mockStudents.find(s => s.studentId === id);
-                return { success: !!student, data: student };
-            }
-            
-            if (endpoint.includes('/api/payments/student/')) {
-                const studentId = endpoint.split('/').pop();
-                const studentPayments = mockPayments.filter(p => p.studentId === studentId);
-                return { success: true, data: studentPayments };
-            }
-            
             return { success: true, data: [] };
         }
+        
+        function postData(endpoint, body) {
+            if (endpoint === '/api/students') {
+                const newStudent = { 
+                    ...body, 
+                    feesCollected: 0, 
+                    createdAt: new Date().toISOString(),
+                    studentId: `STU${new Date().getFullYear()}${String(mockStudents.length + 1).padStart(4, '0')}`
+                };
+                mockStudents.push(newStudent);
+                localStorage.setItem('east_africa_students', JSON.stringify(mockStudents));
+                return { success: true, data: newStudent };
+            } else if (endpoint === '/api/payments') {
+                const student = mockStudents.find(s => s.studentId === body.studentId);
+                if (!student) return { success: false, message: 'Student not found' };
+                
+                const remainingBalance = student.totalFees - student.feesCollected;
+                if (body.amount > remainingBalance) {
+                    return { success: false, message: `Amount exceeds remaining balance of $${remainingBalance.toLocaleString()}` };
+                }
+                
+                const newPayment = {
+                    paymentId: `PAY${new Date().getFullYear()}${String(mockPayments.length + 1).padStart(4, '0')}`,
+                    studentId: body.studentId,
+                    studentName: `${student.firstName} ${student.lastName}`,
+                    amount: body.amount,
+                    paymentMethod: body.paymentMethod,
+                    dateOfPayment: new Date().toISOString()
+                };
+                mockPayments.push(newPayment);
+                student.feesCollected += body.amount;
+                localStorage.setItem('east_africa_students', JSON.stringify(mockStudents));
+                localStorage.setItem('east_africa_payments', JSON.stringify(mockPayments));
+                return { success: true, data: newPayment };
+            }
+            return { success: false, message: 'Invalid endpoint' };
+        }
+        
+        function deleteData(endpoint) {
+            if (endpoint.includes('/api/students/')) {
+                const id = endpoint.split('/').pop();
+                mockStudents = mockStudents.filter(s => s.studentId !== id);
+                mockPayments = mockPayments.filter(p => p.studentId !== id);
+                localStorage.setItem('east_africa_students', JSON.stringify(mockStudents));
+                localStorage.setItem('east_africa_payments', JSON.stringify(mockPayments));
+                return { success: true, message: 'Student deleted' };
+            } else if (endpoint.includes('/api/payments/')) {
+                const id = endpoint.split('/').pop();
+                const paymentToDelete = mockPayments.find(p => p.paymentId === id);
+                if (paymentToDelete) {
+                    const student = mockStudents.find(s => s.studentId === paymentToDelete.studentId);
+                    if (student) {
+                        student.feesCollected -= paymentToDelete.amount;
+                    }
+                    mockPayments = mockPayments.filter(p => p.paymentId !== id);
+                    localStorage.setItem('east_africa_students', JSON.stringify(mockStudents));
+                    localStorage.setItem('east_africa_payments', JSON.stringify(mockPayments));
+                }
+                return { success: true, message: 'Payment deleted' };
+            }
+            return { success: false, message: 'Delete failed' };
+        }
+        
+        // Initialize mock data
+        initMockData();
         
         // Application State
         let currentDeleteType = null;
@@ -597,19 +607,16 @@
         
         // Admin Credentials
         const VALID_CREDENTIALS = {
-            'admin@gmail.com': { password: 'admin123', name: 'Administrator', role: 'admin' },
-            'finance@gmail.com': { password: 'pass123', name: 'Finance Manager', role: 'finance' }
+            'admin@eastafrica.edu': { password: 'admin123', name: 'Administrator', role: 'admin' },
+            'finance@eastafrica.edu': { password: 'finance123', name: 'Finance Manager', role: 'finance' }
         };
         
         const UNLOCK_PASSWORD = 'admin123';
         
-        // Initialize mock data
-        initMockData();
-        
         // Time Update Functions
         function updateDateTime() {
             const now = new Date();
-            const timeString = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+            const timeString = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
             const dateString = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
             
             const timeElement = document.getElementById('currentTimeAuth');
@@ -622,16 +629,16 @@
         updateDateTime();
         
         // Authentication Mode Switching
-        function switchToLogin() {
+        window.switchToLogin = function() {
             const lockMode = document.getElementById('lockMode');
             const loginMode = document.getElementById('loginMode');
             const authError = document.getElementById('authError');
             if (lockMode) lockMode.style.display = 'none';
             if (loginMode) loginMode.style.display = 'block';
             if (authError) authError.style.display = 'none';
-        }
+        };
         
-        function switchToLock() {
+        window.switchToLock = function() {
             const loginMode = document.getElementById('loginMode');
             const lockMode = document.getElementById('lockMode');
             const authError = document.getElementById('authError');
@@ -640,9 +647,9 @@
             if (lockMode) lockMode.style.display = 'block';
             if (authError) authError.style.display = 'none';
             if (unlockPassword) unlockPassword.value = '';
-        }
+        };
         
-        function lockScreen() {
+        window.lockScreen = function() {
             if (isAuthenticated) {
                 const authScreen = document.getElementById('authScreen');
                 const dashboardApp = document.getElementById('dashboardApp');
@@ -655,7 +662,7 @@
                 switchToLock();
                 updateDateTime();
             }
-        }
+        };
         
         // Unlock Function
         const unlockForm = document.getElementById('unlockForm');
@@ -666,7 +673,7 @@
                 
                 if (password === UNLOCK_PASSWORD) {
                     isAuthenticated = true;
-                    sessionStorage.setItem('authToken', 'authenticated');
+                    sessionStorage.setItem('east_africa_auth', 'authenticated');
                     const authScreen = document.getElementById('authScreen');
                     const dashboardApp = document.getElementById('dashboardApp');
                     if (authScreen) authScreen.style.display = 'none';
@@ -697,8 +704,8 @@
                 if (VALID_CREDENTIALS[email] && VALID_CREDENTIALS[email].password === password) {
                     isAuthenticated = true;
                     currentUser = VALID_CREDENTIALS[email];
-                    sessionStorage.setItem('authToken', 'authenticated');
-                    sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    sessionStorage.setItem('east_africa_auth', 'authenticated');
+                    sessionStorage.setItem('east_africa_user', JSON.stringify(currentUser));
                     
                     const authScreen = document.getElementById('authScreen');
                     const dashboardApp = document.getElementById('dashboardApp');
@@ -720,8 +727,8 @@
         }
         
         // Check existing session
-        if (sessionStorage.getItem('authToken') === 'authenticated') {
-            const savedUser = JSON.parse(sessionStorage.getItem('currentUser'));
+        if (sessionStorage.getItem('east_africa_auth') === 'authenticated') {
+            const savedUser = JSON.parse(sessionStorage.getItem('east_africa_user'));
             if (savedUser) {
                 currentUser = savedUser;
                 isAuthenticated = true;
@@ -743,12 +750,12 @@
             if (dashboardApp) dashboardApp.style.display = 'none';
         }
         
-        // Inactivity Timer
+        // Inactivity Timer (30 minutes)
         function resetInactivityTimer() {
             if (inactivityTimer) clearTimeout(inactivityTimer);
             inactivityTimer = setTimeout(() => {
                 if (isAuthenticated && document.getElementById('dashboardApp').style.display !== 'none') {
-                    sessionStorage.removeItem('authToken');
+                    sessionStorage.removeItem('east_africa_auth');
                     isAuthenticated = false;
                     lockScreen();
                     switchToLock();
@@ -764,7 +771,7 @@
         });
         
         // Navigation Functions
-        function showSection(section) {
+        window.showSection = function(section) {
             const pageTitle = document.getElementById('pageTitle');
             if (pageTitle) pageTitle.textContent = getSectionTitle(section);
             loadSectionContent(section);
@@ -787,7 +794,7 @@
                 if (sidebar) sidebar.classList.remove('open');
             }
             resetInactivityTimer();
-        }
+        };
         
         function getSectionTitle(section) {
             const titles = {
@@ -819,69 +826,71 @@
         async function loadDashboardContent(container) {
             container.innerHTML = '<div class="flex justify-center items-center h-96"><div class="spinner-premium"></div></div>';
             
-            try {
-                const [statsRes, studentsRes, paymentsRes] = await Promise.all([
-                    apiCall('/api/stats'),
-                    apiCall('/api/students'),
-                    apiCall('/api/payments')
-                ]);
-                
-                const stats = statsRes.data;
-                const students = studentsRes.data;
-                const payments = paymentsRes.data;
-                
-                const totalItems = (students?.length || 0) + (payments?.length || 0);
-                const badge = document.getElementById('notificationBadge');
-                if (badge) {
-                    if (totalItems > 0) {
-                        badge.textContent = totalItems;
-                        badge.classList.remove('hidden');
-                    } else {
-                        badge.classList.add('hidden');
-                    }
+            const stats = getData('/api/stats').data;
+            const students = getData('/api/students').data;
+            const payments = getData('/api/payments').data;
+            
+            const totalItems = (students?.length || 0) + (payments?.length || 0);
+            const badge = document.getElementById('notificationBadge');
+            if (badge) {
+                if (totalItems > 0) {
+                    badge.textContent = totalItems;
+                    badge.classList.remove('hidden');
+                } else {
+                    badge.classList.add('hidden');
                 }
-                
-                container.innerHTML = `
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                        ${createStatCard('Total Students', stats?.totalStudents || 0, 'fas fa-users', 'blue')}
-                        ${createStatCard('Total Payments', stats?.totalPayments || 0, 'fas fa-credit-card', 'green')}
-                        ${createStatCard('Total Revenue', '$' + (stats?.totalRevenue?.toLocaleString() || 0), 'fas fa-dollar-sign', 'yellow')}
-                        ${createStatCard('Average Payment', '$' + (stats?.averagePayment?.toLocaleString() || 0), 'fas fa-chart-line', 'purple')}
-                    </div>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        ${createRecentCard('📚 Recent Students', students || [], 'student')}
-                        ${createRecentCard('💰 Recent Payments', payments || [], 'payment')}
-                    </div>
-                `;
-            } catch (error) {
-                console.error('Dashboard error:', error);
-                container.innerHTML = `<div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-yellow-700">
-                    <i class="fas fa-exclamation-triangle mr-2"></i> 
-                    Using offline mode. Backend server not detected. Data is saved locally.
-                </div>`;
-                // Reload with mock data
-                loadDashboardContent(container);
             }
-        }
-        
-        function createStatCard(title, value, icon, color) {
-            const colors = {
-                blue: 'from-blue-500 to-blue-600',
-                green: 'from-emerald-500 to-emerald-600',
-                yellow: 'from-amber-500 to-amber-600',
-                purple: 'from-purple-500 to-purple-600'
-            };
-            return `
-                <div class="card-modern p-6 cursor-pointer group" onclick="showSection('${title === 'Total Students' ? 'students' : title === 'Total Payments' ? 'payments' : 'statistics'}')">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-500 text-sm font-medium">${title}</p>
-                            <h3 class="text-3xl font-bold text-gray-800 mt-2">${value}</h3>
-                        </div>
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br ${colors[color]} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                            <i class="${icon} text-white text-2xl"></i>
+            
+            container.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 animate-fadeInUp">
+                    <div class="card-modern p-6 cursor-pointer group" onclick="showSection('students')">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm font-medium">Total Students</p>
+                                <h3 class="text-3xl font-bold text-gray-800 mt-2">${stats?.totalStudents || 0}</h3>
+                            </div>
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                <i class="fas fa-users text-white text-2xl"></i>
+                            </div>
                         </div>
                     </div>
+                    <div class="card-modern p-6 cursor-pointer group" onclick="showSection('payments')">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm font-medium">Total Payments</p>
+                                <h3 class="text-3xl font-bold text-gray-800 mt-2">${stats?.totalPayments || 0}</h3>
+                            </div>
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                <i class="fas fa-credit-card text-white text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-modern p-6 cursor-pointer group" onclick="showSection('statistics')">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm font-medium">Total Revenue</p>
+                                <h3 class="text-3xl font-bold text-gray-800 mt-2">$${(stats?.totalRevenue || 0).toLocaleString()}</h3>
+                            </div>
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                <i class="fas fa-dollar-sign text-white text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-modern p-6 cursor-pointer group" onclick="showSection('statistics')">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm font-medium">Average Payment</p>
+                                <h3 class="text-3xl font-bold text-gray-800 mt-2">$${(stats?.averagePayment || 0).toLocaleString()}</h3>
+                            </div>
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                <i class="fas fa-chart-line text-white text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    ${createRecentCard('📚 Recent Students', students || [], 'student')}
+                    ${createRecentCard('💰 Recent Payments', payments || [], 'payment')}
                 </div>
             `;
         }
@@ -895,7 +904,7 @@
                     </div>
                     <div class="p-6">
                         ${items.length > 0 ? items.map(item => type === 'student' ? `
-                            <div class="flex items-center justify-between py-4 border-b border-gray-100 last:border-0 hover:bg-gray-50 px-3 rounded-lg transition-all">
+                            <div class="flex items-center justify-between py-4 border-b border-gray-100 last:border-0 hover:bg-gray-50 px-3 rounded-lg transition-all cursor-pointer" onclick="viewStudent('${item.studentId}')">
                                 <div class="flex items-center space-x-3">
                                     <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                                         <i class="fas fa-user text-primary"></i>
@@ -938,15 +947,11 @@
         // Add Student Form
         function loadAddStudentForm(container) {
             container.innerHTML = `
-                <div class="max-w-2xl mx-auto">
+                <div class="max-w-2xl mx-auto animate-fadeInUp">
                     <div class="card-modern p-8">
                         <h3 class="text-2xl font-bold text-gray-800 mb-2">Register New Student</h3>
                         <p class="text-gray-500 mb-6">Enter student information to create a new record</p>
                         <form id="studentForm" class="space-y-5">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Student ID *</label>
-                                <input type="text" name="studentId" class="input-premium w-full px-4 py-3 rounded-xl border-2" placeholder="e.g., STU2024001" required>
-                            </div>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-sm font-semibold text-gray-700 mb-2">First Name *</label>
@@ -969,6 +974,10 @@
                                 <label class="block text-sm font-semibold text-gray-700 mb-2">Year of Study *</label>
                                 <input type="number" name="yearOfStudy" min="1" max="6" class="input-premium w-full px-4 py-3 rounded-xl border-2" required>
                             </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Total Fees ($) *</label>
+                                <input type="number" name="totalFees" min="0" step="0.01" class="input-premium w-full px-4 py-3 rounded-xl border-2" required>
+                            </div>
                             <button type="submit" class="btn-premium w-full py-3 rounded-xl font-semibold">
                                 <i class="fas fa-save mr-2"></i> Register Student
                             </button>
@@ -980,40 +989,34 @@
             
             const studentForm = document.getElementById('studentForm');
             if (studentForm) {
-                studentForm.addEventListener('submit', async (e) => {
+                studentForm.addEventListener('submit', (e) => {
                     e.preventDefault();
                     const formData = new FormData(e.target);
                     const data = Object.fromEntries(formData);
                     data.yearOfStudy = parseInt(data.yearOfStudy);
+                    data.totalFees = parseFloat(data.totalFees);
                     
-                    try {
-                        const result = await apiCall('/api/students', {
-                            method: 'POST',
-                            body: JSON.stringify(data)
-                        });
-                        const alertDiv = document.getElementById('studentFormAlert');
-                        
-                        if (result.success) {
-                            if (alertDiv) {
-                                alertDiv.className = 'mt-4 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700 animate-fadeInUp';
-                                alertDiv.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Student added successfully!';
-                                alertDiv.classList.remove('hidden');
-                            }
-                            e.target.reset();
-                            setTimeout(() => {
-                                if (alertDiv) alertDiv.classList.add('hidden');
-                            }, 3000);
-                            loadSectionContent('dashboard');
-                            showNotification('Student registered successfully', 'success');
-                        } else {
-                            if (alertDiv) {
-                                alertDiv.className = 'mt-4 p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 animate-fadeInUp';
-                                alertDiv.innerHTML = `<i class="fas fa-exclamation-circle mr-2"></i> ${result.message || 'Failed to add student'}`;
-                                alertDiv.classList.remove('hidden');
-                            }
+                    const result = postData('/api/students', data);
+                    const alertDiv = document.getElementById('studentFormAlert');
+                    
+                    if (result.success) {
+                        if (alertDiv) {
+                            alertDiv.className = 'mt-4 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700 animate-fadeInUp';
+                            alertDiv.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Student added successfully!';
+                            alertDiv.classList.remove('hidden');
                         }
-                    } catch (error) {
-                        showNotification(error.message, 'error');
+                        e.target.reset();
+                        setTimeout(() => {
+                            if (alertDiv) alertDiv.classList.add('hidden');
+                        }, 3000);
+                        loadSectionContent('dashboard');
+                        showNotification('Student registered successfully', 'success');
+                    } else {
+                        if (alertDiv) {
+                            alertDiv.className = 'mt-4 p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 animate-fadeInUp';
+                            alertDiv.innerHTML = `<i class="fas fa-exclamation-circle mr-2"></i> ${result.message || 'Failed to add student'}`;
+                            alertDiv.classList.remove('hidden');
+                        }
                     }
                     resetInactivityTimer();
                 });
@@ -1022,23 +1025,27 @@
         
         // Add Payment Form
         function loadAddPaymentForm(container) {
+            // Populate student select dynamically
+            const students = mockStudents;
+            const studentOptions = students.map(s => `<option value="${s.studentId}" data-total-fees="${s.totalFees}" data-fees-collected="${s.feesCollected}">${s.firstName} ${s.lastName} (${s.studentId}) - Remaining: $${(s.totalFees - s.feesCollected).toLocaleString()}</option>`).join('');
+            
             container.innerHTML = `
-                <div class="max-w-2xl mx-auto">
+                <div class="max-w-2xl mx-auto animate-fadeInUp">
                     <div class="card-modern p-8">
                         <h3 class="text-2xl font-bold text-gray-800 mb-2">Record Payment</h3>
                         <p class="text-gray-500 mb-6">Process student fee payment transaction</p>
                         <form id="paymentForm" class="space-y-5">
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Payment ID *</label>
-                                <input type="text" name="paymentId" class="input-premium w-full px-4 py-3 rounded-xl border-2" placeholder="e.g., PAY2024001" required>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Student ID *</label>
-                                <input type="text" name="studentId" class="input-premium w-full px-4 py-3 rounded-xl border-2" placeholder="Enter student ID" required>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Select Student *</label>
+                                <select name="studentId" id="paymentStudentSelect" class="input-premium w-full px-4 py-3 rounded-xl border-2" required>
+                                    <option value="">-- Select Student --</option>
+                                    ${studentOptions}
+                                </select>
+                                <div id="balanceDisplay" class="mt-2 text-sm text-gray-600 hidden"></div>
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-2">Amount ($) *</label>
-                                <input type="number" name="amount" step="0.01" class="input-premium w-full px-4 py-3 rounded-xl border-2" placeholder="0.00" required>
+                                <input type="number" name="amount" id="paymentAmount" step="0.01" class="input-premium w-full px-4 py-3 rounded-xl border-2" placeholder="0.00" required>
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-2">Payment Method *</label>
@@ -1060,42 +1067,57 @@
                 </div>
             `;
             
+            // Add balance display logic
+            const studentSelect = document.getElementById('paymentStudentSelect');
+            const balanceDisplay = document.getElementById('balanceDisplay');
+            const paymentAmount = document.getElementById('paymentAmount');
+            
+            if (studentSelect) {
+                studentSelect.addEventListener('change', () => {
+                    const selectedOption = studentSelect.options[studentSelect.selectedIndex];
+                    const totalFees = parseFloat(selectedOption.dataset.totalFees) || 0;
+                    const feesCollected = parseFloat(selectedOption.dataset.feesCollected) || 0;
+                    const remaining = totalFees - feesCollected;
+                    if (selectedOption.value) {
+                        balanceDisplay.innerHTML = `<span class="font-semibold">Remaining Balance:</span> <span class="text-emerald-600 font-bold">$${remaining.toLocaleString()}</span>`;
+                        balanceDisplay.classList.remove('hidden');
+                        if (paymentAmount) paymentAmount.max = remaining;
+                    } else {
+                        balanceDisplay.classList.add('hidden');
+                    }
+                });
+            }
+            
             const paymentForm = document.getElementById('paymentForm');
             if (paymentForm) {
-                paymentForm.addEventListener('submit', async (e) => {
+                paymentForm.addEventListener('submit', (e) => {
                     e.preventDefault();
                     const formData = new FormData(e.target);
                     const data = Object.fromEntries(formData);
                     data.amount = parseFloat(data.amount);
                     
-                    try {
-                        const result = await apiCall('/api/payments', {
-                            method: 'POST',
-                            body: JSON.stringify(data)
-                        });
-                        const alertDiv = document.getElementById('paymentFormAlert');
-                        
-                        if (result.success) {
-                            if (alertDiv) {
-                                alertDiv.className = 'mt-4 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700 animate-fadeInUp';
-                                alertDiv.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Payment recorded successfully!';
-                                alertDiv.classList.remove('hidden');
-                            }
-                            e.target.reset();
-                            setTimeout(() => {
-                                if (alertDiv) alertDiv.classList.add('hidden');
-                            }, 3000);
-                            loadSectionContent('dashboard');
-                            showNotification('Payment processed successfully', 'success');
-                        } else {
-                            if (alertDiv) {
-                                alertDiv.className = 'mt-4 p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 animate-fadeInUp';
-                                alertDiv.innerHTML = `<i class="fas fa-exclamation-circle mr-2"></i> ${result.message || 'Failed to process payment'}`;
-                                alertDiv.classList.remove('hidden');
-                            }
+                    const result = postData('/api/payments', data);
+                    const alertDiv = document.getElementById('paymentFormAlert');
+                    
+                    if (result.success) {
+                        if (alertDiv) {
+                            alertDiv.className = 'mt-4 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700 animate-fadeInUp';
+                            alertDiv.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Payment recorded successfully!';
+                            alertDiv.classList.remove('hidden');
                         }
-                    } catch (error) {
-                        showNotification(error.message, 'error');
+                        e.target.reset();
+                        if (balanceDisplay) balanceDisplay.classList.add('hidden');
+                        setTimeout(() => {
+                            if (alertDiv) alertDiv.classList.add('hidden');
+                        }, 3000);
+                        loadSectionContent('dashboard');
+                        showNotification('Payment processed successfully', 'success');
+                    } else {
+                        if (alertDiv) {
+                            alertDiv.className = 'mt-4 p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 animate-fadeInUp';
+                            alertDiv.innerHTML = `<i class="fas fa-exclamation-circle mr-2"></i> ${result.message || 'Failed to process payment'}`;
+                            alertDiv.classList.remove('hidden');
+                        }
                     }
                     resetInactivityTimer();
                 });
@@ -1106,72 +1128,71 @@
         async function loadStudentsList(container) {
             container.innerHTML = '<div class="flex justify-center items-center h-96"><div class="spinner-premium"></div></div>';
             
-            try {
-                const result = await apiCall('/api/students');
-                
-                if (result.success && result.data?.length > 0) {
-                    container.innerHTML = `
-                        <div class="card-modern">
-                            <div class="px-6 py-5 border-b border-gray-200 flex justify-between items-center flex-wrap gap-4">
-                                <h3 class="font-bold text-gray-800 text-xl">Student Directory</h3>
-                                <button class="btn-premium px-5 py-2 rounded-xl text-sm font-semibold" onclick="showSection('add-student')">
-                                    <i class="fas fa-plus mr-2"></i> Add Student
-                                </button>
-                            </div>
-                            <div class="overflow-x-auto">
-                                <table class="table-premium">
-                                    <thead>
-                                        <tr>
-                                            <th>Student ID</th>
-                                            <th>Full Name</th>
-                                            <th>Email</th>
-                                            <th>Course</th>
-                                            <th>Year</th>
-                                            <th>Fees Paid</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        ${result.data.map(student => `
-                                            <tr>
-                                                <td class="font-semibold text-gray-800">${student.studentId}</td>
-                                                <td>${student.firstName} ${student.lastName}</td>
-                                                <td>${student.email}</td>
-                                                <td>${student.course}</td>
-                                                <td><span class="badge-premium badge-info">Year ${student.yearOfStudy}</span></td>
-                                                <td><span class="badge-premium badge-success">$${(student.feesCollected || 0).toLocaleString()}</span></td>
-                                                <td>
-                                                    <div class="flex space-x-2">
-                                                        <button onclick="viewStudent('${student.studentId}')" class="text-primary hover:text-primary-dark transition-colors p-2 rounded-lg hover:bg-primary/10">
-                                                            <i class="fas fa-eye"></i>
-                                                        </button>
-                                                        <button onclick="confirmDelete('student', '${student.studentId}')" class="text-danger hover:text-red-700 transition-colors p-2 rounded-lg hover:bg-red-50">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        `).join('')}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    `;
-                } else {
-                    container.innerHTML = `
-                        <div class="card-modern p-12 text-center">
-                            <i class="fas fa-users text-6xl text-gray-300 mb-4"></i>
-                            <h3 class="text-xl font-bold text-gray-700 mb-2">No Students Found</h3>
-                            <p class="text-gray-500 mb-4">Get started by adding your first student</p>
-                            <button class="btn-premium px-6 py-3 rounded-xl font-semibold" onclick="showSection('add-student')">
+            const result = getData('/api/students');
+            
+            if (result.success && result.data?.length > 0) {
+                container.innerHTML = `
+                    <div class="card-modern animate-fadeInUp">
+                        <div class="px-6 py-5 border-b border-gray-200 flex justify-between items-center flex-wrap gap-4">
+                            <h3 class="font-bold text-gray-800 text-xl">Student Directory</h3>
+                            <button class="btn-premium px-5 py-2 rounded-xl text-sm font-semibold" onclick="showSection('add-student')">
                                 <i class="fas fa-plus mr-2"></i> Add Student
                             </button>
                         </div>
-                    `;
-                }
-            } catch (error) {
-                console.error('Students list error:', error);
-                container.innerHTML = `<div class="bg-red-50 border border-red-200 rounded-xl p-4 text-red-600">Error loading students. Using offline mode.</div>`;
+                        <div class="overflow-x-auto">
+                            <table class="table-premium">
+                                <thead>
+                                    <tr>
+                                        <th>Student ID</th>
+                                        <th>Full Name</th>
+                                        <th>Email</th>
+                                        <th>Course</th>
+                                        <th>Year</th>
+                                        <th>Fees Paid</th>
+                                        <th>Balance</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${result.data.map(student => {
+                                        const remaining = student.totalFees - student.feesCollected;
+                                        return `
+                                        <tr>
+                                            <td class="font-semibold text-gray-800">${student.studentId}</td>
+                                            <td>${student.firstName} ${student.lastName}</td>
+                                            <td>${student.email}</td>
+                                            <td>${student.course}</td>
+                                            <td><span class="badge-premium badge-info">Year ${student.yearOfStudy}</span></td>
+                                            <td><span class="badge-premium badge-success">$${(student.feesCollected || 0).toLocaleString()}</span></td>
+                                            <td><span class="badge-premium ${remaining > 0 ? 'bg-amber-500' : 'bg-emerald-500'}" style="background: linear-gradient(135deg, ${remaining > 0 ? '#f59e0b' : '#10b981'} 0%, ${remaining > 0 ? '#d97706' : '#059669'} 100%);">$${remaining.toLocaleString()}</span></td>
+                                            <td>
+                                                <div class="flex space-x-2">
+                                                    <button onclick="viewStudent('${student.studentId}')" class="text-primary hover:text-primary-dark transition-colors p-2 rounded-lg hover:bg-primary/10">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    <button onclick="confirmDelete('student', '${student.studentId}')" class="text-danger hover:text-red-700 transition-colors p-2 rounded-lg hover:bg-red-50">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    `}).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="card-modern p-12 text-center animate-fadeInUp">
+                        <i class="fas fa-users text-6xl text-gray-300 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-700 mb-2">No Students Found</h3>
+                        <p class="text-gray-500 mb-4">Get started by adding your first student</p>
+                        <button class="btn-premium px-6 py-3 rounded-xl font-semibold" onclick="showSection('add-student')">
+                            <i class="fas fa-plus mr-2"></i> Add Student
+                        </button>
+                    </div>
+                `;
             }
         }
         
@@ -1179,67 +1200,62 @@
         async function loadPaymentsList(container) {
             container.innerHTML = '<div class="flex justify-center items-center h-96"><div class="spinner-premium"></div></div>';
             
-            try {
-                const result = await apiCall('/api/payments');
-                
-                if (result.success && result.data?.length > 0) {
-                    container.innerHTML = `
-                        <div class="card-modern">
-                            <div class="px-6 py-5 border-b border-gray-200 flex justify-between items-center flex-wrap gap-4">
-                                <h3 class="font-bold text-gray-800 text-xl">Payment Records</h3>
-                                <button class="btn-premium px-5 py-2 rounded-xl text-sm font-semibold" onclick="showSection('add-payment')">
-                                    <i class="fas fa-plus mr-2"></i> Record Payment
-                                </button>
-                            </div>
-                            <div class="overflow-x-auto">
-                                <table class="table-premium">
-                                    <thead>
-                                        <tr>
-                                            <th>Payment ID</th>
-                                            <th>Student ID</th>
-                                            <th>Student Name</th>
-                                            <th>Amount</th>
-                                            <th>Method</th>
-                                            <th>Date</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        ${result.data.map(payment => `
-                                            <tr>
-                                                <td class="font-semibold text-gray-800">${payment.paymentId}</td>
-                                                <td>${payment.studentId}</td>
-                                                <td>${payment.studentName}</td>
-                                                <td><span class="badge-premium badge-success">$${payment.amount.toLocaleString()}</span></td>
-                                                <td><span class="badge-premium badge-info">${payment.paymentMethod}</span></td>
-                                                <td>${new Date(payment.dateOfPayment).toLocaleDateString()}</td>
-                                                <td>
-                                                    <button onclick="confirmDelete('payment', '${payment.paymentId}')" class="text-danger hover:text-red-700 transition-colors p-2 rounded-lg hover:bg-red-50">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        `).join('')}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    `;
-                } else {
-                    container.innerHTML = `
-                        <div class="card-modern p-12 text-center">
-                            <i class="fas fa-credit-card text-6xl text-gray-300 mb-4"></i>
-                            <h3 class="text-xl font-bold text-gray-700 mb-2">No Payments Found</h3>
-                            <p class="text-gray-500 mb-4">Record your first payment transaction</p>
-                            <button class="btn-premium px-6 py-3 rounded-xl font-semibold" onclick="showSection('add-payment')">
+            const result = getData('/api/payments');
+            
+            if (result.success && result.data?.length > 0) {
+                container.innerHTML = `
+                    <div class="card-modern animate-fadeInUp">
+                        <div class="px-6 py-5 border-b border-gray-200 flex justify-between items-center flex-wrap gap-4">
+                            <h3 class="font-bold text-gray-800 text-xl">Payment Records</h3>
+                            <button class="btn-premium px-5 py-2 rounded-xl text-sm font-semibold" onclick="showSection('add-payment')">
                                 <i class="fas fa-plus mr-2"></i> Record Payment
                             </button>
                         </div>
-                    `;
-                }
-            } catch (error) {
-                console.error('Payments list error:', error);
-                container.innerHTML = `<div class="bg-red-50 border border-red-200 rounded-xl p-4 text-red-600">Error loading payments. Using offline mode.</div>`;
+                        <div class="overflow-x-auto">
+                            <table class="table-premium">
+                                <thead>
+                                    <tr>
+                                        <th>Payment ID</th>
+                                        <th>Student ID</th>
+                                        <th>Student Name</th>
+                                        <th>Amount</th>
+                                        <th>Method</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${result.data.map(payment => `
+                                        <tr>
+                                            <td class="font-semibold text-gray-800">${payment.paymentId}</td>
+                                            <td>${payment.studentId}</td>
+                                            <td>${payment.studentName}</td>
+                                            <td><span class="badge-premium badge-success">$${payment.amount.toLocaleString()}</span></td>
+                                            <td><span class="badge-premium badge-info">${payment.paymentMethod}</span></td>
+                                            <td>${new Date(payment.dateOfPayment).toLocaleDateString()}</td>
+                                            <td>
+                                                <button onclick="confirmDelete('payment', '${payment.paymentId}')" class="text-danger hover:text-red-700 transition-colors p-2 rounded-lg hover:bg-red-50">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="card-modern p-12 text-center animate-fadeInUp">
+                        <i class="fas fa-credit-card text-6xl text-gray-300 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-700 mb-2">No Payments Found</h3>
+                        <p class="text-gray-500 mb-4">Record your first payment transaction</p>
+                        <button class="btn-premium px-6 py-3 rounded-xl font-semibold" onclick="showSection('add-payment')">
+                            <i class="fas fa-plus mr-2"></i> Record Payment
+                        </button>
+                    </div>
+                `;
             }
         }
         
@@ -1247,110 +1263,165 @@
         async function loadStatisticsContent(container) {
             container.innerHTML = '<div class="flex justify-center items-center h-96"><div class="spinner-premium"></div></div>';
             
-            try {
-                const [statsRes, studentsRes, paymentsRes] = await Promise.all([
-                    apiCall('/api/stats'),
-                    apiCall('/api/students'),
-                    apiCall('/api/payments')
-                ]);
-                
-                const stats = statsRes.data;
-                const students = studentsRes.data || [];
-                const payments = paymentsRes.data || [];
-                
-                const yearDistribution = {};
-                students.forEach(s => { yearDistribution[s.yearOfStudy] = (yearDistribution[s.yearOfStudy] || 0) + 1; });
-                
-                container.innerHTML = `
+            const stats = getData('/api/stats').data;
+            const students = getData('/api/students').data || [];
+            const payments = getData('/api/payments').data || [];
+            
+            const yearDistribution = {};
+            students.forEach(s => { yearDistribution[s.yearOfStudy] = (yearDistribution[s.yearOfStudy] || 0) + 1; });
+            
+            const methodStats = {};
+            payments.forEach(p => { methodStats[p.paymentMethod] = (methodStats[p.paymentMethod] || 0) + 1; });
+            
+            container.innerHTML = `
+                <div class="animate-fadeInUp">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                         <div class="card-modern p-6">
-                            <h3 class="font-bold text-gray-800 text-lg mb-4">Students by Year</h3>
+                            <h3 class="font-bold text-gray-800 text-lg mb-4">📊 Students by Year</h3>
                             <canvas id="yearChart" height="250"></canvas>
                         </div>
                         <div class="card-modern p-6">
-                            <h3 class="font-bold text-gray-800 text-lg mb-4">Payment Methods</h3>
+                            <h3 class="font-bold text-gray-800 text-lg mb-4">💳 Payment Methods Distribution</h3>
                             <canvas id="paymentChart" height="250"></canvas>
                         </div>
                     </div>
                     <div class="card-modern p-6">
-                        <h3 class="font-bold text-gray-800 text-lg mb-4">Key Metrics</h3>
+                        <h3 class="font-bold text-gray-800 text-lg mb-4">📈 Key Performance Metrics</h3>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                            <div class="text-center"><p class="text-3xl font-bold text-primary">${stats?.totalStudents || 0}</p><p class="text-sm text-gray-500">Total Students</p></div>
-                            <div class="text-center"><p class="text-3xl font-bold text-emerald-600">${stats?.totalPayments || 0}</p><p class="text-sm text-gray-500">Total Payments</p></div>
-                            <div class="text-center"><p class="text-3xl font-bold text-amber-600">$${(stats?.totalRevenue || 0).toLocaleString()}</p><p class="text-sm text-gray-500">Total Revenue</p></div>
-                            <div class="text-center"><p class="text-3xl font-bold text-purple-600">$${(stats?.averagePayment || 0).toLocaleString()}</p><p class="text-sm text-gray-500">Average Payment</p></div>
+                            <div class="text-center p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl">
+                                <p class="text-3xl font-bold text-primary">${stats?.totalStudents || 0}</p>
+                                <p class="text-sm text-gray-500">Total Students</p>
+                            </div>
+                            <div class="text-center p-4 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl">
+                                <p class="text-3xl font-bold text-emerald-600">${stats?.totalPayments || 0}</p>
+                                <p class="text-sm text-gray-500">Total Payments</p>
+                            </div>
+                            <div class="text-center p-4 bg-gradient-to-br from-amber-50 to-yellow-50 rounded-xl">
+                                <p class="text-3xl font-bold text-amber-600">$${(stats?.totalRevenue || 0).toLocaleString()}</p>
+                                <p class="text-sm text-gray-500">Total Revenue</p>
+                            </div>
+                            <div class="text-center p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl">
+                                <p class="text-3xl font-bold text-purple-600">$${(stats?.averagePayment || 0).toLocaleString()}</p>
+                                <p class="text-sm text-gray-500">Average Payment</p>
+                            </div>
                         </div>
                     </div>
-                `;
-                
-                const yearChart = document.getElementById('yearChart');
-                if (yearChart) {
-                    new Chart(yearChart, {
-                        type: 'bar',
-                        data: { labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Year 6'], datasets: [{ label: 'Students', data: [1,2,3,4,5,6].map(y => yearDistribution[y] || 0), backgroundColor: '#4f46e5', borderRadius: 8 }] },
-                        options: { responsive: true, maintainAspectRatio: true }
-                    });
-                }
-                
-                const methodStats = {};
-                payments.forEach(p => { methodStats[p.paymentMethod] = (methodStats[p.paymentMethod] || 0) + 1; });
-                const paymentChart = document.getElementById('paymentChart');
-                if (paymentChart) {
-                    new Chart(paymentChart, {
-                        type: 'doughnut',
-                        data: { labels: Object.keys(methodStats), datasets: [{ data: Object.values(methodStats), backgroundColor: ['#4f46e5', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'] }] },
-                        options: { responsive: true, maintainAspectRatio: true }
-                    });
-                }
-            } catch (error) {
-                console.error('Statistics error:', error);
-                container.innerHTML = `<div class="bg-red-50 border border-red-200 rounded-xl p-4 text-red-600">Error loading statistics</div>`;
+                </div>
+            `;
+            
+            // Initialize charts
+            const yearChart = document.getElementById('yearChart');
+            if (yearChart) {
+                new Chart(yearChart, {
+                    type: 'bar',
+                    data: { 
+                        labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Year 6'], 
+                        datasets: [{ 
+                            label: 'Number of Students', 
+                            data: [1,2,3,4,5,6].map(y => yearDistribution[y] || 0), 
+                            backgroundColor: '#4f46e5', 
+                            borderRadius: 8,
+                            barPercentage: 0.65
+                        }] 
+                    },
+                    options: { 
+                        responsive: true, 
+                        maintainAspectRatio: true,
+                        plugins: {
+                            legend: { position: 'top' }
+                        }
+                    }
+                });
+            }
+            
+            const paymentChart = document.getElementById('paymentChart');
+            if (paymentChart && Object.keys(methodStats).length > 0) {
+                new Chart(paymentChart, {
+                    type: 'doughnut',
+                    data: { 
+                        labels: Object.keys(methodStats), 
+                        datasets: [{ 
+                            data: Object.values(methodStats), 
+                            backgroundColor: ['#4f46e5', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4'],
+                            borderWidth: 0
+                        }] 
+                    },
+                    options: { 
+                        responsive: true, 
+                        maintainAspectRatio: true,
+                        plugins: {
+                            legend: { position: 'bottom' }
+                        }
+                    }
+                });
             }
         }
         
         // View Student Details
-        async function viewStudent(studentId) {
-            try {
-                const [studentRes, paymentsRes] = await Promise.all([
-                    apiCall(`/api/students/${studentId}`),
-                    apiCall(`/api/payments/student/${studentId}`)
-                ]);
-                const student = studentRes.data;
-                const payments = paymentsRes.data || [];
-                
-                if (student) {
-                    const detailsContent = document.getElementById('studentDetailsContent');
-                    if (detailsContent) {
-                        detailsContent.innerHTML = `
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div><h4 class="font-bold text-gray-800 mb-3">Personal Information</h4><div class="space-y-3">${[
-                                    ['Student ID', student.studentId], ['Full Name', `${student.firstName} ${student.lastName}`], ['Email', student.email], ['Course', student.course], ['Year of Study', student.yearOfStudy], ['Total Fees', `<strong class="text-emerald-600">$${(student.feesCollected || 0).toLocaleString()}</strong>`], ['Registered', new Date(student.createdAt).toLocaleString()]
-                                ].map(([label, value]) => `<div><span class="text-gray-500 text-sm">${label}:</span><p class="font-medium text-gray-800">${value}</p></div>`).join('')}</div></div>
-                                <div><h4 class="font-bold text-gray-800 mb-3">Payment History</h4>${payments.length > 0 ? `<div class="space-y-2 max-h-96 overflow-y-auto">${payments.map(p => `<div class="border rounded-lg p-3"><div class="flex justify-between"><span class="font-medium">${p.paymentId}</span><span class="text-emerald-600 font-bold">$${p.amount.toLocaleString()}</span></div><div class="flex justify-between text-sm text-gray-500 mt-1"><span>${p.paymentMethod}</span><span>${new Date(p.dateOfPayment).toLocaleDateString()}</span></div></div>`).join('')}</div>` : '<p class="text-gray-500">No payment history available</p>'}</div>
+        window.viewStudent = function(studentId) {
+            const student = mockStudents.find(s => s.studentId === studentId);
+            const payments = mockPayments.filter(p => p.studentId === studentId);
+            
+            if (student) {
+                const remaining = student.totalFees - student.feesCollected;
+                const detailsContent = document.getElementById('studentDetailsContent');
+                if (detailsContent) {
+                    detailsContent.innerHTML = `
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">Personal Information</h4>
+                                <div class="space-y-3">
+                                    <div><span class="text-gray-500 text-sm">Student ID:</span><p class="font-medium text-gray-800">${student.studentId}</p></div>
+                                    <div><span class="text-gray-500 text-sm">Full Name:</span><p class="font-medium text-gray-800">${student.firstName} ${student.lastName}</p></div>
+                                    <div><span class="text-gray-500 text-sm">Email:</span><p class="font-medium text-gray-800">${student.email}</p></div>
+                                    <div><span class="text-gray-500 text-sm">Course:</span><p class="font-medium text-gray-800">${student.course}</p></div>
+                                    <div><span class="text-gray-500 text-sm">Year of Study:</span><p class="font-medium text-gray-800">Year ${student.yearOfStudy}</p></div>
+                                    <div><span class="text-gray-500 text-sm">Total Fees:</span><p class="font-bold text-gray-800">$${student.totalFees.toLocaleString()}</p></div>
+                                    <div><span class="text-gray-500 text-sm">Fees Paid:</span><p class="font-bold text-emerald-600">$${student.feesCollected.toLocaleString()}</p></div>
+                                    <div><span class="text-gray-500 text-sm">Remaining Balance:</span><p class="font-bold ${remaining > 0 ? 'text-amber-600' : 'text-emerald-600'}">$${remaining.toLocaleString()}</p></div>
+                                    <div><span class="text-gray-500 text-sm">Registered:</span><p class="font-medium text-gray-800">${new Date(student.createdAt).toLocaleString()}</p></div>
+                                </div>
                             </div>
-                        `;
-                    }
-                    const modal = document.getElementById('viewStudentModal');
-                    if (modal) {
-                        modal.classList.remove('hidden');
-                        modal.classList.add('flex');
-                    }
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-200">Payment History</h4>
+                                ${payments.length > 0 ? `
+                                    <div class="space-y-2 max-h-96 overflow-y-auto pr-2">
+                                        ${payments.map(p => `
+                                            <div class="border rounded-lg p-3 hover:shadow-md transition-all">
+                                                <div class="flex justify-between items-center">
+                                                    <span class="font-mono text-sm text-gray-600">${p.paymentId}</span>
+                                                    <span class="text-emerald-600 font-bold">$${p.amount.toLocaleString()}</span>
+                                                </div>
+                                                <div class="flex justify-between text-sm text-gray-500 mt-1">
+                                                    <span><i class="fas fa-credit-card mr-1"></i>${p.paymentMethod}</span>
+                                                    <span><i class="far fa-calendar-alt mr-1"></i>${new Date(p.dateOfPayment).toLocaleDateString()}</span>
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                ` : '<p class="text-gray-500 text-center py-8">No payment history available</p>'}
+                            </div>
+                        </div>
+                    `;
                 }
-            } catch (error) { 
-                showNotification(error.message, 'error'); 
+                const modal = document.getElementById('viewStudentModal');
+                if (modal) {
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                }
             }
-        }
+        };
         
-        function closeViewModal() {
+        window.closeViewModal = function() {
             const modal = document.getElementById('viewStudentModal');
             if (modal) {
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
             }
-        }
+        };
         
         // Delete Functions
-        function confirmDelete(type, id) {
+        window.confirmDelete = function(type, id) {
             currentDeleteType = type;
             currentDeleteId = id;
             const deleteMessage = document.getElementById('deleteMessage');
@@ -1362,9 +1433,9 @@
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
             }
-        }
+        };
         
-        function closeModal() {
+        window.closeModal = function() {
             const modal = document.getElementById('deleteModal');
             if (modal) {
                 modal.classList.add('hidden');
@@ -1372,45 +1443,28 @@
             }
             currentDeleteType = null;
             currentDeleteId = null;
-        }
+        };
         
         const confirmBtn = document.getElementById('confirmDeleteBtn');
         if (confirmBtn) {
             confirmBtn.onclick = async () => {
-                if (currentDeleteType === 'student') await deleteStudent(currentDeleteId);
-                else if (currentDeleteType === 'payment') await deletePayment(currentDeleteId);
+                if (currentDeleteType === 'student') {
+                    const result = deleteData(`/api/students/${currentDeleteId}`);
+                    if (result.success) { 
+                        showNotification('Student deleted successfully', 'success'); 
+                        await loadSectionContent('students'); 
+                        await loadSectionContent('dashboard'); 
+                    }
+                } else if (currentDeleteType === 'payment') {
+                    const result = deleteData(`/api/payments/${currentDeleteId}`);
+                    if (result.success) { 
+                        showNotification('Payment deleted successfully', 'success'); 
+                        await loadSectionContent('payments'); 
+                        await loadSectionContent('dashboard'); 
+                    }
+                }
                 closeModal();
             };
-        }
-        
-        async function deleteStudent(studentId) {
-            try {
-                const result = await apiCall(`/api/students/${studentId}`, { method: 'DELETE' });
-                if (result.success) { 
-                    showNotification('Student deleted successfully', 'success'); 
-                    await loadSectionContent('students'); 
-                    await loadSectionContent('dashboard'); 
-                } else {
-                    showNotification(result.message || 'Delete failed', 'error'); 
-                }
-            } catch (error) { 
-                showNotification(error.message, 'error'); 
-            }
-        }
-        
-        async function deletePayment(paymentId) {
-            try {
-                const result = await apiCall(`/api/payments/${paymentId}`, { method: 'DELETE' });
-                if (result.success) { 
-                    showNotification('Payment deleted successfully', 'success'); 
-                    await loadSectionContent('payments'); 
-                    await loadSectionContent('dashboard'); 
-                } else {
-                    showNotification(result.message || 'Delete failed', 'error'); 
-                }
-            } catch (error) { 
-                showNotification(error.message, 'error'); 
-            }
         }
         
         function showNotification(message, type) {
@@ -1430,7 +1484,20 @@
             });
         }
         
-        // Initialize
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth < 768) {
+                const sidebar = document.querySelector('.sidebar');
+                const menuBtn = document.getElementById('menuToggle');
+                if (sidebar && sidebar.classList.contains('open')) {
+                    if (!sidebar.contains(e.target) && !menuBtn?.contains(e.target)) {
+                        sidebar.classList.remove('open');
+                    }
+                }
+            }
+        });
+        
+        // Initialize with default section
         function setActiveNav() {
             const currentPage = window.location.hash.replace('#', '') || 'dashboard';
             document.querySelectorAll('.nav-link').forEach(link => {
